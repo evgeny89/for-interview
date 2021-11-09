@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 5</title>
+    <style>
+        .table {
+            margin: 0 auto;
+            width: 800px;
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+
+        .table td, .table th {
+            border: 1px solid black;
+            text-align: center;
+            height: 50px;
+            background-color: #d9d9d9;
+        }
+
+        .table .table-span {
+            background-color: #85a0a9;
+        }
+
+        .picture {
+            margin: 20px auto;
+            width: 800px;
+            height: 600px;
+            background-color: #6ba851;
+        }
+
+        .background {
+            background-color: #5daec5;
+            height: 60%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes cloud-run {
+            from {
+                left: calc(100% + 70px);
+            }
+
+            to {
+               left: -70px;
+            }
+        }
+
+        .cloud {
+            position: absolute;
+            height: 25px;
+            width: 60px;
+            background-color: #d2d2d2;
+            right: -70px;
+            animation-name: cloud-run;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        .cloud:first-child {
+            top: 30px;
+            animation-duration: 5s;
+            animation-delay: 0s;
+        }
+
+        .cloud:nth-child(2) {
+            top: 230px;
+            animation-duration: 6s;
+            animation-delay: 1s;
+        }
+
+        .cloud:last-child {
+            top: 130px;
+            animation-duration: 4s;
+            animation-delay: 2s;
+        }
+
+        .house {
+            background-color: #912929;
+            width: 150px;
+            height: 50px;
+            margin: -30px auto 0;
+            position: relative;
+        }
+
+        .house::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 28px;
+            background-color: #5e4a4a;
+            top: -27px;
+            right: -8px;
+            transform: skew(30deg);
+        }
+
+        .house::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 28px;
+            background-color: #5e4a4a;
+            top: -27px;
+            right: 8px;
+            transform: skew(-30deg);
+        }
+    </style>
+</head>
+<body>
+<!-- 1. Что такое <ol>, <ul> и <li>? -->
+<!-- Теги ol и ul создают список на странице, разница между ними в маркере.
+    ol (ordered list) - это нумерованный список, а ul (unordered list) - маркированный список,
+    в первом случае маркер представляет цифры, во втором есть несколько вариантов - кружечки, квадраты, ромбики\
+    и так же можно задать картинку через атрибут.
+    Тег li (list item) определяет элементы списков. является блочным элементом. -->
+
+<!-- 2. Сверстать сложную таблицу с объединением строк и столбцов. -->
+<table class="table">
+    <caption>Пример сложной таблицы</caption>
+    <tr>
+        <th>первый столбец</th>
+        <th>второй столбец</th>
+        <th>третий столбец</th>
+        <th>четвертый столбец</th>
+        <th>пятый столбец</th>
+    </tr>
+    <tr>
+        <td>1 row / 1 col</td>
+        <td>1 row / 2 col</td>
+        <td>1 row / 3 col</td>
+        <td>1 row / 4 col</td>
+        <td rowspan="2" class="table-span">1 row / 5 col</td>
+    </tr>
+    <tr>
+        <td colspan="3" class="table-span">2 row / 1 col</td>
+        <td rowspan="2" class="table-span">2 row / 2 col</td>
+    </tr>
+    <tr>
+        <td>3 row / 1 col</td>
+        <td>3 row / 2 col</td>
+        <td>3 row / 3 col</td>
+        <td>3 row / 5 col</td>
+    </tr>
+</table>
+
+<!-- 3. В каком регистре лучше писать HTML-код? -->
+<!-- Правилом хорошего тона считается писать html-код в нижнем регистре. -->
+
+<!-- 4. Как убрать синюю рамку вокруг картинки-ссылки? -->
+<!-- Эта рамка - свойство border, которое убирается стилями border: none; или border: 0; -->
+
+<!-- 5. Обязательно ли писать alt в <img>? -->
+<!-- Да это обязательный атрибут тега img, если его не указывать, то современный браузеры разберутся с этим, однако валидаторы сделают замечание, что тег невалидный. -->
+
+<!-- 6. Что такое html-entities? -->
+<!-- Есть зарезервированные символы html, чтобы из вывести как есть (например тег) необходимо заменить симол на html-entities,
+    например, символ < заменяется сочетанием сиволов &lt; или &#60; символ © вставляется в разметку как &copy; или &#169; и т.д. -->
+
+<!-- 7. Как убрать подчеркивание для всех ссылок на странице? -->
+<!-- Нужно в стилях для селектора ссылки отключить свойство text-decoration, например так:
+    a {
+        text-decoration: none;
+    }
+-->
+
+<!-- 8. Что делает свойство clear? -->
+<!-- Свойство clear отменяет обтекание элемента с определенной стороны, заданное через свойство float. -->
+
+<!-- 9. Есть ячейка таблицы, в ней 3 дива, в каждом диве – по слову.
+На первый див применен стиль float: left; на третий – float: right. Что нужно применить на второй див,
+чтобы все три надписи/дивы были в одной горизонтальной строке,
+то есть первый имел бы выравнивание по левому краю, третий – по правому, а второй – по центру? -->
+<!-- Необходимо второй див сделать стройчным элементом, например свойством display: inline; -->
+
+<!-- 10. Перечислить по пять знакомых вам псевдоклассов и псевдостилей с указанием их функционала. -->
+<!-- Псевдоклассы:
+    :first-child - выбирает первого ребенка с указанным селектором.
+    :hover - задает стили для элементов над которыми находится курсор мыши.
+    :active - задает стили для активного элемента на странице, класс срабатывает во время клика по элементу.
+    :checked - псевдокласс для некоторых элементов формы, таких как чекбоксы и радиокнопки. Выбирает элементы имеющие атрибут checked
+    :focus - применяется для элементов формы и не только, на которых сейчас находится фокус.
+
+    Надеюсь что псевдостили - это псевдоэлементы:
+    ::after - создает элемент, являющийся последним потомком указанного элемента.
+    ::before - создает элемент, являющийся первым потомком указанного элемента.
+    ::first-letter - выбирает первую букву в блочном элементе.
+    ::first-line - выбирает первую строку в блочном элементе.
+    к сожалению 5го не знаю...
+-->
+
+<!-- 11. Нарисовать при помощи CSS3 дом на фоне неба и плывущие облака. -->
+<!-- стили с 25 по 106 строчки -->
+<div class="picture">
+    <div class="background">
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+    </div>
+    <div class="house"></div>
+</div>
+</body>
+</html>
